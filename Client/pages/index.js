@@ -18,21 +18,21 @@
 //   const {appStatus, connectToWallet} = useContext(TwitterContext)
 
 //   const app = (status = appStatus) => {
-//     switch (status) {
-//       case 'connected':
-//         return userLoggedIn
+    // switch (status) {
+    //   case 'connected':
+    //     return userLoggedIn
 
-//       case 'notConnected':
-//         return noUserFound
+    //   case 'notConnected':
+    //     return noUserFound
 
-//       case 'noMetaMask':
-//         return noMetaMaskFound
+    //   case 'noMetaMask':
+    //     return noMetaMaskFound
 
-//       case 'error':
-//         return error
+    //   case 'error':
+    //     return error
 
-//       default:
-//         return loading
+    //   default:
+    //     return loading
 //     }
 //   }
 
@@ -81,11 +81,11 @@
 //     </div>
 //   )
 
-//   const loading = (
-//     <div className={style.loginContainer}>
-//       <div className={style.loginContent}>Loading...</div>
-//     </div>
-//   )
+  // const loading = (
+  //   <div className={style.loginContainer}>
+  //     <div className={style.loginContent}>Loading...</div>
+  //   </div>
+  // )
 
 //   return <div className={style.wrapper}>{app(appStatus)}</div>
 // }
@@ -101,7 +101,7 @@ import Sidebar from '../Components/Sidebar'
 import  Feed  from '../Components/home/Feed'
 import  Widgets  from '../Components/Widgets'
 import Image from 'next/image'
-import metamask from '../assests/metamask.png'
+//import metamask from '../assests/metamask.png'
 import errorImg from '../assests/error.png'
 
 // import { useContext } from 'react'
@@ -122,25 +122,27 @@ const style = {
   loginContent: `text-3xl font-bold text-center mt-24`,
 }
 
-const Home = () => {
-  const { appStatus, connectWallet } = useContext(TwitterContext)
+export default function Home() {
+  const { appStatus, connectToWallet } = useContext(TwitterContext)
 
   const app = (status = appStatus) => {
+    console.log(status)
     switch (status) {
-      case 'connected':
-        return userLoggedIn
+        case 'connected':
+          return userLoggedIn
+  
+        case 'notconnected':
+          return noUserFound
+  
+        case 'noMetaMask':
+          return noMetaMaskFound
+  
+        case 'error':
+          return error
+  
+        default:
+          return loading
 
-      case 'notConnected':
-        return noUserFound
-
-      case 'noMetaMask':
-        return noMetaMaskFound
-
-      case 'error':
-        return error
-
-      default:
-        return loading
     }
   }
 
@@ -157,10 +159,10 @@ const Home = () => {
       <Image src={metamaskLogo} width={200} height={200} />
       <div
         className={style.walletConnectButton}
-        onClick={() => connectWallet()}
+        onClick={() => connectToWallet()}
       >
         Connect Wallet
-      </div>
+      </div> 
       <div className={style.loginContent}>Connect to Metamask.</div>
     </div>
   )
@@ -199,5 +201,5 @@ const Home = () => {
   return <div className={style.wrapper}>{app(appStatus)}</div>
 }
 
-export default Home
+// export default Home
 
